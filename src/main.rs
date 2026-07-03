@@ -1,4 +1,6 @@
-use KoalaNetty::net::client::Client;
+use KoalaNetty::net::client::client::Client;
+
+
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
