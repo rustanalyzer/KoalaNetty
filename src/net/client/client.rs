@@ -3,7 +3,7 @@ use tokio::{
     net::TcpStream,
 };
 
-use crate::{net::model::*, packet::reader::PacketReader};
+use crate::{net::{client::api::Api, model::*}, packet::reader::PacketReader};
 
 pub struct Client {
     pub(crate) stream: TcpStream,
@@ -28,5 +28,9 @@ impl Client {
             sign_buffer: None,
             bot_info: None,
         })
+    }
+    
+    pub fn api(&mut self) -> Api<'_> {
+        Api { client: self }
     }
 }
