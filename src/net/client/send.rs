@@ -33,6 +33,9 @@ impl Client {
         id: i32, 
         value: &T,
     ) -> std::io::Result<()> {
+        let json = serde_json::to_string(value)?;
+        println!("SEND: {}", json);
+
         let mut payload = serde_json::to_vec(value)?;
         self.crypt(&mut payload);
 
