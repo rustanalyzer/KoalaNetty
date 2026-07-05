@@ -55,14 +55,26 @@ impl<'a> Api<'a> {
             .await
     }
 
-    pub async fn nick_color_change(&mut self, value: impl Into<String>) -> io::Result<()> {
+    pub async fn nick_color_change<S>(
+        &mut self,
+        colors: impl IntoIterator<Item = S>,
+    ) -> io::Result<()>
+    where
+        S: AsRef<str>,
+    {
+        let value = colors
+            .into_iter()
+            .map(|s| s.as_ref().to_string())
+            .collect::<Vec<_>>()
+            .join(" ");
+
         self.client
             .send_json(
                 0,
                 &NickColorChangeRequest {
                     cmd: "api",
                     method: "bot.nickColorChange",
-                    v: value.into(),
+                    v: value,
                 },
             )
             .await
