@@ -9,11 +9,11 @@ pub struct Client {
     pub(crate) stream: TcpStream,
     pub(crate) reader: PacketReader,
 
-    pub(crate) token: String,
-    pub(crate) is_connected: bool,
+    pub token: String,
+    pub is_connected: bool,
 
     pub(crate) sign_buffer: Option<Bytes>,
-    pub(crate) bot_info: Option<BotInfo>,
+    pub bot_info: Option<BotInfo>,
 }
 
 impl Client {

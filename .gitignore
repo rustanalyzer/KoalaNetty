@@ -1,1 +1,6 @@
 /target
+.vibecheck/
+.claude/
+.cursor/
+/CLAUDE.MD
+/workflows
